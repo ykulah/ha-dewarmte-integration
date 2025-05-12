@@ -2,7 +2,7 @@ import aiohttp
 import logging
 import asyncio
 from datetime import datetime, timedelta, timezone
-from config.custom_components.dewarmte.const import API_REFRESH_URL, TOKEN_REFRESH_MIN, API_TOKEN_URL, \
+from custom_components.dewarmte.const import API_REFRESH_URL, TOKEN_REFRESH_MIN, API_TOKEN_URL, \
     API_BASE_URL, API_PRODUCTS_PATH
 
 _LOGGER = logging.getLogger(__name__)
