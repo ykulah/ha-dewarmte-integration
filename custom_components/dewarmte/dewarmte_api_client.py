@@ -3,7 +3,7 @@ import logging
 import asyncio
 from datetime import datetime, timedelta, timezone
 from custom_components.dewarmte.const import API_REFRESH_URL, TOKEN_REFRESH_MIN, API_TOKEN_URL, \
-    API_BASE_URL, API_PRODUCTS_PATH
+    API_BASE_URL, API_PRODUCTS_PATH, API_TB_STATUS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -75,7 +75,6 @@ class DeWarmteAPIClient:
         """Make an authenticated request with token refresh handling."""
         await self._ensure_valid_token()
 
-        #url = f"https://api.mydewarmte.com{path}"
         url = f"{self.BASE_URL}{path}"
         headers = kwargs.pop("headers", {})
         headers["Authorization"] = f"Bearer {self._access_token}"
@@ -96,9 +95,15 @@ class DeWarmteAPIClient:
 
     async def async_get_devices(self):
 
-        # products_resp = await self._request("GET", "/v1/customer/products")
         products_resp = await self._request("GET", API_PRODUCTS_PATH)
         if products_resp["count"] > 0:
             return products_resp["results"]
         else:
             return []
+    
+    async def async_get_outdoor_temp(self):
+        tb_status = await self._request("GET", API_TB_STATUS)
+        if "outdoor_temperature" in tb_status.keys():
+            return tb_status["outdoor_temperature"]
+        else:
+            return {}

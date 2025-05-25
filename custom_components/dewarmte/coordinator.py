@@ -36,6 +36,11 @@ class DeWarmteUpdateCoordinator(DataUpdateCoordinator):
 
                 # Fetch and return structured device data
                 devices = await self.client.async_get_devices()
-                return {device["id"]: device for device in devices}
+                outdoor_temp = await self.client.async_get_outdoor_temp()
+
+                devices_return = {device["id"]: device for device in devices}
+                for device in devices_return.keys():
+                    devices_return[device]["outdoor_temp"] = outdoor_temp
+                return devices_return
         except Exception as err:
             raise UpdateFailed(f"Error communicating with API: {err}") from err
