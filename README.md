@@ -20,6 +20,7 @@ This s a custom integration for [Home Assistant](https://www.home-assistant.io) 
   - Heat Output / Input
   - On/Off State
   - Connection Status
+  - Outside Temperature
 
 ---
 
