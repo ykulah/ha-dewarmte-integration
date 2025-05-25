@@ -20,8 +20,7 @@ SENSOR_KEYS = {
     "target_temperature": (SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     "actual_temperature": (SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     "heat_input": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "total"),
-    "heat_output": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "total
-self._attr_native_unit_of_measurement = unit"),
+    "heat_output": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "total"),
     "electricity_consumption": (SensorDeviceClass.ENERGY,  UnitOfEnergy.KILO_WATT_HOUR, "total")
 }
 
@@ -89,11 +88,11 @@ class MySensor(CoordinatorEntity, SensorEntity):
         self._attr_name = name
         self._attr_unique_id = f"{device_id}_{key}"
         self._attr_unit_of_measurement = unit
-        self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_should_poll = False
         if state_class is not None:
             self._attr_state_class = state_class
+        self._attr_native_unit_of_measurement = unit
 
     @property
     def native_value(self):
