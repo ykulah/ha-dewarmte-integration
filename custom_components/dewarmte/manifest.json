@@ -1,7 +1,7 @@
 {
   "domain": "dewarmte",
   "name": "DeWarmte Heat Pump",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "documentation": "https://github.com/ykulah/ha-dewarmte-integration",
   "requirements": [],
   "dependencies": [],
