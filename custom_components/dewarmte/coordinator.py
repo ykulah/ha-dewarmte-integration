@@ -41,6 +41,7 @@ class DeWarmteUpdateCoordinator(DataUpdateCoordinator):
                 devices_return = {device["id"]: device for device in devices}
                 for device in devices_return.keys():
                     devices_return[device]["outdoor_temp"] = outdoor_temp
+                    devices_return[device]["insights"] =  await self.client.async_get_insights(device)
                 return devices_return
         except Exception as err:
             raise UpdateFailed(f"Error communicating with API: {err}") from err
