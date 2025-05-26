@@ -27,7 +27,8 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up MyIntegration binary sensors from config entry."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]["coordinator"]
+    coordinator = hass.data[DOMAIN][entry.entry_id]["coordinaFtor"]
+
     entities = []
 
     for device_id, device in coordinator.data.items():
