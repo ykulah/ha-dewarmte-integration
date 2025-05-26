@@ -2,14 +2,13 @@ import aiohttp
 import logging
 import asyncio
 from datetime import datetime, timedelta, timezone
-from custom_components.dewarmte.const import API_REFRESH_URL, TOKEN_REFRESH_MIN, API_TOKEN_URL, \
+from homeassistant.util import dt as dt_util
+from config.custom_components.dewarmte.const import API_REFRESH_URL, TOKEN_REFRESH_MIN, API_TOKEN_URL, \
     API_BASE_URL, API_PRODUCTS_PATH, API_TB_STATUS
 
 _LOGGER = logging.getLogger(__name__)
 
 class DeWarmteAPIClient:
-    #TOKEN_URL = "https://api.mydewarmte.com/v1/auth/token/"
-    #REFRESH_URL = "https://api.mydewarmte.com/v1/auth/token/refresh/"
 
     TOKEN_URL = API_TOKEN_URL
     REFRESH_URL = API_REFRESH_URL
@@ -94,16 +93,33 @@ class DeWarmteAPIClient:
             return await resp.json()
 
     async def async_get_devices(self):
-
         products_resp = await self._request("GET", API_PRODUCTS_PATH)
         if products_resp["count"] > 0:
             return products_resp["results"]
         else:
             return []
-    
+
     async def async_get_outdoor_temp(self):
         tb_status = await self._request("GET", API_TB_STATUS)
         if "outdoor_temperature" in tb_status.keys():
             return tb_status["outdoor_temperature"]
         else:
             return {}
+
+    async def async_get_insights(self, device_id):
+        now_local = dt_util.now()
+        today_str = now_local.strftime('%Y-%m-%d')
+        path = f"/v1/customer/products/{device_id}/insights/?start_date={today_str}&timespan=hourly"
+        insights = await self._request("GET", path)
+
+        total_consumed = 0
+        for data_point in insights["data"]:
+            total_consumed += data_point["electricity_consumed"]
+
+        values = dict()
+        target_keys = ["heat_sum", "electricity_sum", "cop"]
+        for key in target_keys:
+            values[key] = insights[key]
+
+        values["calculated_consumed_electricity"] = total_consumed
+        return values
