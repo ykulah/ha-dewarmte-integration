@@ -21,6 +21,9 @@ This s a custom integration for [Home Assistant](https://www.home-assistant.io) 
   - On/Off State
   - Connection Status
   - Outside Temperature
+  - COP
+  - Consumed electricity from insights endpoint
+  - Sum of electricity consumption from hourly windows of insights endpoint
 
 ---
 
