@@ -19,14 +19,12 @@ async def async_setup_entry(hass, entry):
 
     # Store coordinator and client for other platforms
     hass.data[DOMAIN][entry.entry_id] = {
-        "coordinator": coordinator,
+        "coordinaFtor": coordinator,
         "client": api_client,
     }
 
     # Forward setup to sensor platform
-    hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, "sensor"))
-    hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, "binary_sensor"))
-
+    await hass.config_entries.async_forward_entry_setups(entry, ["sensor", "binary_sensor"])
     return True
 
 async def async_unload_entry(hass, entry):
