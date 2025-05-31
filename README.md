@@ -18,6 +18,7 @@ This s a custom integration for [Home Assistant](https://www.home-assistant.io) 
   - Target Temperature
   - Actual Temperature
   - Heat Output / Input
+  - Water flow
   - On/Off State
   - Connection Status
   - Outside Temperature

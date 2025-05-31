@@ -3,7 +3,7 @@ from homeassistant.components.sensor import (
     SensorEntity,
     SensorDeviceClass, SensorStateClass,
 )
-from homeassistant.const import UnitOfTemperature, UnitOfEnergy
+from homeassistant.const import UnitOfTemperature, UnitOfEnergy, UnitOfVolumeFlowRate
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -23,6 +23,7 @@ STATUS_KEYS = {
     "calculated_consumed_electricity": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "insights"),
     "heat_input": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status"),
     "heat_output": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status"),
+    "water_flow": (SensorDeviceClass.VOLUME_FLOW_RATE, UnitOfVolumeFlowRate.LITERS_PER_MINUTE, "status"),
 }
 
 STATS_KEYS = {
