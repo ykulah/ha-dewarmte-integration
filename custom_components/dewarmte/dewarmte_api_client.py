@@ -121,5 +121,5 @@ class DeWarmteAPIClient:
         for key in target_keys:
             values[key] = insights[key]
 
-        values["calculated_consumed_electricity"] = total_consumed
+        values["daily_consumed_electricity"] = total_consumed
         return values

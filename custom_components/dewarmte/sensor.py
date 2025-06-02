@@ -20,15 +20,14 @@ STATUS_KEYS = {
     "actual_temperature": (SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, "status"),
     "heat_sum": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "insights"),
     "cop": ("", "", "insights"),
-    "calculated_consumed_electricity": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "insights"),
     "heat_input": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status"),
     "heat_output": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status"),
     "water_flow": (SensorDeviceClass.VOLUME_FLOW_RATE, UnitOfVolumeFlowRate.LITERS_PER_MINUTE, "status"),
+    "electricity_consumption": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status")
 }
 
 STATS_KEYS = {
-    "electricity_sum": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "insights", SensorStateClass.TOTAL),
-    "electricity_consumption": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "status", SensorStateClass.MEASUREMENT)
+    "daily_consumed_electricity": (SensorDeviceClass.ENERGY, UnitOfEnergy.KILO_WATT_HOUR, "insights", SensorStateClass.TOTAL_INCREASING),
 }
 
 
