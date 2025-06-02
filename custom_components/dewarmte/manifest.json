@@ -1,10 +1,11 @@
 {
   "domain": "dewarmte",
   "name": "DeWarmte Heat Pump",
-  "version": "0.2.0",
+  "version": "0.4.1",
   "documentation": "https://github.com/ykulah/ha-dewarmte-integration",
   "requirements": [],
   "dependencies": [],
   "codeowners": ["@ykulah"],
-  "config_flow": true
+  "config_flow": true,
+  "iot_class": "cloud_polling"
 }
